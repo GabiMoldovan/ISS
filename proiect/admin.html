@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - MotoShop</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" width="175px"></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Acasa</a></li>
+                        <li><a href="products.html">Produse</a></li>
+                        <li><a href="about.html">Despre</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Cont</a></li>
+                    </ul>
+                </nav>
+                <a href="cart.html"><img src="images/cart.png" width="33px" height="28px"></a>
+                <a href="admin.html" style="display: inline-block; margin-left: 10px;">
+                    <img src="images/admin.png" width="30px" height="28px">
+                </a>
+                <a href="history.html" style="display: inline-block; margin-left: 10px;">
+                    <img src="images/history.png" width="30px" height="28px">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Comenzi existente</h2>
+        <div id="ordersContainer"></div>
+    </div>
+
+    <script>
+        // Funcție pentru afișarea comenzilor salvate
+        function displayOrders() {
+            let ordersContainer = document.getElementById('ordersContainer');
+            ordersContainer.innerHTML = ''; // Curățăm conținutul existent
+
+            // Obținem toate comenzile salvate din localStorage
+            let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+            orders.forEach((order, index) => {
+                let orderElement = document.createElement('div');
+                orderElement.classList.add('order-details');
+
+                // Construim HTML-ul pentru afișarea detaliilor comenzii
+                let orderHTML = `
+                    <p><strong>Comandă #${index + 1}</strong></p>
+                    <p><strong>Nume client:</strong> ${order.customerName}</p>
+                    <p><strong>Email:</strong> ${order.customerEmail}</p>
+                    <p><strong>Telefon:</strong> ${order.customerPhone}</p>
+                    <p><strong>Adresă livrare:</strong> ${order.deliveryAddress}</p>
+                    <p><strong>Metodă de plată:</strong> ${order.paymentMethod}</p>
+                    <p><strong>Produse comandate:</strong></p>
+                    <ul>
+                `;
+
+                let totalPrice = 0;
+
+                order.orderedProducts.forEach(product => {
+                    let productSubtotal = product.price * (product.quantity || 1) + 50 * (product.quantity || 1);
+                    totalPrice += productSubtotal;
+
+                    orderHTML += `<li>${product.name} - ${product.price.toFixed(2)} Euro x ${product.quantity || 1} + 50 x ${product.quantity || 1} = ${productSubtotal.toFixed(2)} Euro</li>`;
+                });
+
+                orderHTML += `</ul>`;
+                orderHTML += `<p><strong>Preț total comandă:</strong> ${totalPrice.toFixed(2)} Euro</p>`;
+
+                // Adăugăm butonul de livrare a comenzii
+                orderHTML += `<button onclick="deliverOrder(${index})">Livrează comanda</button>`;
+
+                // Adăugăm HTML-ul comenzii în containerul de comenzii
+                orderElement.innerHTML = orderHTML;
+                ordersContainer.appendChild(orderElement);
+            });
+        }
+
+        // Funcție pentru livrarea comenzii
+        function deliverOrder(orderIndex) {
+            let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+            // Verificăm dacă indexul comenzii este valid
+            if (orderIndex >= 0 && orderIndex < orders.length) {
+                // Extragem comanda livrată din lista de comenzi
+                let deliveredOrder = orders[orderIndex];
+
+                // Ștergem comanda din lista de comenzi
+                orders.splice(orderIndex, 1);
+                localStorage.setItem('orders', JSON.stringify(orders));
+
+                // Actualizăm afișarea comenzilor
+                displayOrders();
+
+                // Obținem lista istoricului de comenzi
+                let orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+
+                // Adăugăm data și ora la comanda livrată
+                deliveredOrder.deliveryTime = new Date().toLocaleString();
+
+                // Adăugăm comanda livrată în istoricul de comenzi
+                orderHistory.push(deliveredOrder);
+                localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+            }
+        }
+
+
+
+        // Apelare funcție la încărcarea paginii pentru afișarea comenzilor salvate
+        displayOrders();
+    </script>
+</body>
+</html>

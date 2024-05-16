@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Produse - MotoShop</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" width="175px"></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Acasa</a></li>
+                        <li><a href="products.html">Produse</a></li>
+                        <li><a href="about.html">Despre</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Cont</a></li>
+                    </ul>
+                </nav>
+                <a href="cart.html"><img src="images/cart.png" width="33px" height="28px"></a>
+                <a href="admin.html" style="display: inline-block; margin-left: 10px;">
+                    <img src="images/admin.png" width="30px" height="28px">
+                </a>
+            </div>
+        </div>
+        <div class="small container">
+            <div class="row row-2">
+                <h2>Toate produsele</h2>
+                <!-- Adăugăm atributul id și onchange pentru filtrare -->
+                <select id="categoryFilter" onchange="filterProducts(this.value)">
+                    <option value="all">Afișare standard</option>
+                    <option value="AM">Afișare categorie AM</option>
+                    <option value="A1">Afișare categorie A1</option>
+                    <option value="A2">Afișare categorie A2</option>
+                    <option value="A">Afișare categorie A</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="am-small-container" id="productsContainer">
+        <!-- Aici vor fi afișate produsele filtrate -->
+        <div class="col-4">
+            <a href="synjet14.html"><img src="images/am1.jpg"></a>
+            <h4>Scuter SYM Jet 14</h4>
+            <h4>(AM) 2695 Euro</h4>
+        </div>
+        <div class="col-4">
+            <a href="yzfr125.html"><img src="images/a1-negru.jpg"></a>
+            <h4>Yamaha YZF R125</h4>
+            <h4>(A1) 4125 Euro</h4>
+        </div>
+        <div class="col-4">
+            <a href="ninja500.html"><img src="images/a2-verde.jpg"></a>
+            <h4>Kawasaki Ninja 500 SE</h4>
+            <h4>(A2) 7000 Euro</h4>
+        </div>
+        <div class="col-4">
+            <a href="s1000rr.html"><img src="images/s1000rr.png"></a>
+            <h4>BMW S1000RR</h4>
+            <h4>(A) 25000 Euro</h4>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { name: 'Scuter SYM Jet 14', category: 'AM', price: 2695, image: 'am1.jpg', page: 'synjet14.html' },
+            { name: 'Yamaha YZF R125', category: 'A1', price: 4125, image: 'a1-negru.jpg', page: 'yzfr125.html' },
+            { name: 'Kawasaki Ninja 500 SE', category: 'A2', price: 7000, image: 'a2-verde.jpg', page: 'ninja500.html' },
+            { name: 'BMW S1000RR', category: 'A', price: 25000, image: 's1000rr.png', page: 's1000rr.html' },
+            //{ name: 'Alt produs', category: 'AM', price: 1500, image: 'am2.jpg', page: 'altprodus.html' }
+            // Mai adaugă alte produse aici
+        ];
+
+        function displayProducts(productsToShow) {
+            const productsContainer = document.getElementById('productsContainer');
+            productsContainer.innerHTML = ''; // Curățăm conținutul existent
+
+            productsToShow.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.classList.add('col-4');
+
+                productElement.innerHTML = `
+                    <a href="${product.page}">
+                        <img src="images/${product.image}" alt="${product.name}">
+                        <h4>${product.name}</h4>
+                        <h4>(${product.category}) ${product.price} Euro</h4>
+                    </a>
+                `;
+
+                productsContainer.appendChild(productElement);
+            });
+        }
+
+        function filterProducts(category) {
+            let filteredProducts = [];
+
+            if (category === 'all') {
+                filteredProducts = products; // Afișăm toate produsele
+            } else {
+                filteredProducts = products.filter(product => product.category === category);
+            }
+
+            displayProducts(filteredProducts);
+        }
+
+        // Afișare inițială a tuturor produselor
+        displayProducts(products);
+    </script>
+</body>
+</html>

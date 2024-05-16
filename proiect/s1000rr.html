@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Produse - MotoShop</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Stilizare pentru imagini mici */
+        .small-img {
+            width: auto; /* Folosește dimensiunea originală a imaginii */
+            cursor: pointer;
+            margin-bottom: 20px; /* Adaugă o margine inferioară între imagini */
+        }
+
+        .small-img-col {
+            margin-right: 40px; /* Adaugă o margine dreaptă între coloanele de imagini mici */
+        }
+
+        /* Stilizare pentru tabel */
+        .date-tehnice table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border: 1px solid #ddd; /* Adaugă un contur subțire în jurul tabelului */
+        }
+
+        .date-tehnice th, .date-tehnice td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Adaugă o linie subțire la sfârșitul fiecărei celule */
+        }
+
+        .date-tehnice th {
+            background-color: #f2f2f2; /* Culoare de fundal pentru capul de tabel */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" width="175px"></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Acasa</a></li>
+                        <li><a href="products.html">Produse</a></li>
+                        <li><a href="about.html">Despre</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Cont</a></li>
+                    </ul>
+                </nav>
+                <a href="cart.html"><img src="images/cart.png" width="33px" height="28px"></a>
+                <a href="admin.html" style="display: inline-block; margin-left: 10px;">
+                    <img src="images/admin.png" width="30px" height="28px">
+                </a>
+            </div>
+        </div>
+        <div class="small-container single-product">
+            <div class="row">
+                <div class="col-2">
+                    <img src="images/s1000rr.png" width="100%" id="productImg">                                                    
+                    <div class="small-img-row">
+                        <div class="small-img-col">
+                            <img src="images/s1000rr.png" class="small-img" onclick="changeImage(this)">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="images/s1000rr-black.png" class="small-img" onclick="changeImage(this)">
+                        </div>
+                    </div>                                                                   
+                </div>
+                <div class="col-2">
+                    <p>Acasa / Produse</p>
+                    <h1>BMW S1000 RR</h1>
+                    <h4>25000 Euro</h4>
+                    <select id="quantity">
+                        <option>Selecteaza culoare</option>
+                        <option>Alb</option>
+                        <option>Negru</option>
+                    </select>
+                    <button id="addToCartBtn" class="btn" onclick="addToCart()">Adauga in cos</button>
+                    <h3>Detalii despre BMW S1000RR</h3>
+                    <p><br>Modelul RR este acum și mai concentrat, mai precis orientat spre performanța pură. Pentru toți cei care cer tot mai mult. De la ei. De la fiecare tură. Și de la modelul lor RR. Complet în spiritul #NeverStopChallenging. Pentru că tocmai acolo unde modelul RR s-a deplasat dintotdeauna, munca de conducere este o muncă milimetrică. Din acest motiv am perfecționat și dezvoltat modelul RR în punctele esențiale: de la noul senzor pentru unghiul de direcție cu Brake Slide Assist și Slide Control, precum și integrarea componentelor M, la îmbunătățirea sistemului electronic și până la operațiile decisive pentru modificarea motocicletei pentru pista de curse.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="scris-date-tehnice">
+            <h3>Date tehnice</h3>
+        </div>
+        <div class="date-tehnice">
+            <table>
+                <style>
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-top: 20px;
+                    }
+
+                    th, td {
+                        padding: 8px;
+                        text-align: left;
+                        border-bottom: 1px solid #ddd;
+                    }
+
+                    /* Stilizare pentru celulele din coloana stângă */
+                    th {
+                        color: black; /* Setează culoarea textului pentru antete */
+                    }
+                </style>
+                <tr>
+                    <th>Tip motor</th>
+                    <td>4 timpi, Răcit cu lichid, SOHC, 4-supape</td>
+                </tr>
+                <tr>
+                    <th>Capacitate cilindrică</th>
+                    <td>451cc</td>
+                </tr>
+                <tr>
+                    <th>Alezaj X Cursă</th>
+                    <td>52,0 mm x 58,7 mm</td>
+                </tr>
+                <tr>
+                    <th>Compresie</th>
+                    <td>11.2 : 1</td>
+                </tr>
+                <tr>
+                    <th>Putere maximă</th>
+                    <td>25,0kW (15.0PS) @ 10.000 rpm</td>
+                </tr>
+                <tr>
+                    <th>Varianta cu putere limitată</th>
+                    <td>e disponibil</td>
+                </tr>
+                <tr>
+                    <th>Cuplu maxim</th>
+                    <td>11,5Nm (1,16kg-m) @ 8.000 rpm</td>
+                </tr>
+                <tr>
+                    <th>Sistem de ungere</th>
+                    <td>Carter umed</td>
+                </tr>
+                <tr>
+                    <th>Tip ambreiaj</th>
+                    <td>Umed, Disc multiplu</td>
+                </tr>
+                <tr>
+                    <th>Sistem de aprindere</th>
+                    <td>TCI (digital)</td>
+                </tr>
+                <tr>
+                    <th>Sistem de transmisie</th>
+                    <td>Angrenaj constant, 6-viteze</td>
+                </tr>
+                <tr>
+                    <th>Transmisie finală</th>
+                    <td>Lanț</td>
+                </tr>
+                <tr>
+                    <th>Fuel consumption</th>
+                    <td>3,1 l/100km</td>
+                </tr>
+                <tr>
+                    <th>CO2 emission</th>
+                    <td>47 g/km</td>
+                </tr>
+                <tr>
+                    <th>Carburator</th>
+                    <td>Injecţie electronică de benzină</td>
+                </tr>
+                <tr>
+                    <th>Cadru</th>
+                    <td>Deltabox din oţel</td>
+                </tr>
+                <tr>
+                    <th>Unghi rolă de direcţie</th>
+                    <td>26Âş</td>
+                </tr>
+                <tr>
+                    <th>Traseu</th>
+                    <td>95mm</td>
+                </tr>
+                <tr>
+                    <th>Sistem suspensie faţă</th>
+                    <td>Discuri hidraulice dublek, Ø41mm</td>
+                </tr>
+                <tr>
+                    <th>Sistem suspensie spate</th>
+                    <td>Basculă, (suspensie tip braţ)</td>
+                </tr>
+                <tr>
+                    <th>Cursă faţă</th>
+                    <td>130 mm</td>
+                </tr>
+                <tr>
+                    <th>Cursă spate</th>
+                    <td>110 mm</td>
+                </tr>
+                <tr>
+                    <th>Frână faţă</th>
+                    <td>mono disc hidraulic , Ø292 mm</td>
+                </tr>
+                <tr>
+                    <th>Frână spate</th>
+                    <td>mono disc hidraulic, Ø220 mm</td>
+                </tr>
+                <tr>
+                    <th>Anvelopă faţă</th>
+                    <td>100/80-17 M/C</td>
+                </tr>
+                <tr>
+                    <th>Anvelopă spate</th>
+                    <td>140/70-17 M/C</td>
+                </tr>
+                <tr>
+                    <th>Lungime totală</th>
+                    <td>1.990 mm</td>
+                </tr>
+                <tr>
+                    <th>Lăţime totală</th>
+                    <td>715 mm</td>
+                </tr>
+                <tr>
+                    <th>Înălţime totală</th>
+                    <td>1.145 mm</td>
+                </tr>
+                <tr>
+                    <th>Înălţimea scaunelor</th>
+                    <td>820 mm</td>
+                </tr>
+                <tr>
+                    <th>Baza roţilor</th>
+                    <td>1.325 mm</td>
+                </tr>
+                <tr>
+                    <th>Gardă minimă la sol</th>
+                    <td>160 mm</td>
+                </tr>
+                <tr>
+                    <th>Greutate la plin (inclusiv plin de benzină şi de ulei)</th>
+                    <td>144 kg</td>
+                </tr>
+                <tr>
+                    <th>Capacitate rezervor carburant</th>
+                    <td>11,0 Litri</td>
+                </tr>
+                <tr>
+                    <th>Capacitate rezervor ulei</th>
+                    <td>1,15 Litri</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function changeImage(image) {
+            const productImg = document.getElementById('productImg');
+            productImg.src = image.src;
+        }
+
+        function addToCart() {
+            const productName = "BMW S1000RR";
+            const productPrice = 25000;
+            const productImage = document.getElementById('productImg').src;
+            const quantity = document.getElementById("quantity").valueAsNumber || 1;
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Adăugăm produsul în coș (de mai multe ori dacă se specifică o cantitate)
+            for (let i = 0; i < quantity; i++) {
+                cart.push({ name: productName, price: productPrice, image: productImage });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert(`Produsul "${productName}" a fost adăugat în coș.`);
+        }
+    </script>
+
+</body>
+</html>

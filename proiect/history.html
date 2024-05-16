@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Istoric Comenzi - MotoShop</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" width="175px"></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Acasa</a></li>
+                        <li><a href="products.html">Produse</a></li>
+                        <li><a href="about.html">Despre</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Cont</a></li>
+                    </ul>
+                </nav>
+                <a href="cart.html"><img src="images/cart.png" width="33px" height="28px"></a>
+                <a href="admin.html" style="display: inline-block; margin-left: 10px;">
+                    <img src="images/admin.png" width="30px" height="28px">
+                </a>
+                <a href="history.html" style="display: inline-block; margin-left: 10px;">
+                    <img src="images/history.png" width="30px" height="28px">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Istoric Comenzi</h2>
+        <!-- Buton pentru ștergerea istoricului -->
+        <button onclick="clearOrderHistory()">Șterge Istoricul</button>
+        <div id="orderHistoryContainer"></div>
+    </div>
+
+    <script>
+       function displayOrderHistory() {
+            let orderHistoryContainer = document.getElementById('orderHistoryContainer');
+            orderHistoryContainer.innerHTML = ''; // Curățăm conținutul existent
+
+            // Obținem toate comenzile salvate în istoric din localStorage
+            let orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+
+            orderHistory.forEach((order, index) => {
+                let orderElement = document.createElement('div');
+                orderElement.classList.add('order-item');
+
+                // Construim HTML-ul pentru afișarea detaliilor comenzii livrate
+                let orderHTML = `
+                    <div class="order-details">
+                        <p><strong>Comandă #${index + 1}</strong></p>
+                        <p><strong>Nume client:</strong> ${order.customerName}</p>
+                        <p><strong>Email:</strong> ${order.customerEmail}</p>
+                        <p><strong>Telefon:</strong> ${order.customerPhone}</p>
+                        <p><strong>Adresă livrare:</strong> ${order.deliveryAddress}</p>
+                        <p><strong>Metodă de plată:</strong> ${order.paymentMethod}</p>
+                        <p><strong>Produse comandate:</strong></p>
+                        <ul>
+                `;
+
+                // Afisăm detaliile produselor comandate
+                order.orderedProducts.forEach(product => {
+                    orderHTML += `<li>${product.name} - ${product.price.toFixed(2)} Euro x ${product.quantity || 1}</li>`;
+                });
+
+                orderHTML += `</ul>`;
+                orderHTML += `<p><strong>Timp comandă:</strong> ${formatDateTime(order.orderTime)}</p>`;
+                orderHTML += `<p><strong>Timp livrare:</strong> ${formatDateTime(order.deliveryTime) || 'În așteptare'}</p>`;
+
+                // Adăugăm HTML-ul comenzii livrate în containerul de istoric de comenzi
+                orderElement.innerHTML = orderHTML;
+                orderHistoryContainer.appendChild(orderElement);
+            });
+        }
+
+        // Funcție pentru formatarea datei și orei într-un format ușor de citit
+        function formatDateTime(dateTimeString) {
+            if (!dateTimeString) return ''; // Dacă nu există o dată și oră, returnăm un șir gol
+
+            let dateTime = new Date(dateTimeString);
+            return dateTime.toLocaleString(); // Returnăm data și ora formatate
+        }
+
+        // Funcția pentru ștergerea istoricului de comenzi
+        function clearOrderHistory() {
+            // Ștergem istoricul de comenzi din localStorage
+            localStorage.removeItem('orderHistory');
+
+            // Afișăm din nou istoricul (care va fi acum gol)
+            displayOrderHistory();
+        }
+
+        // Apelare funcție la încărcarea paginii pentru afișarea istoricului de comenzi
+        displayOrderHistory();
+
+    </script>
+</body>
+</html>

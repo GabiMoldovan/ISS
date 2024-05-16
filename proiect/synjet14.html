@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Produse - MotoShop</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Stilizare pentru imagini mici */
+        .small-img {
+            width: auto; /* Folosește dimensiunea originală a imaginii */
+            cursor: pointer;
+            margin-bottom: 20px; /* Adaugă o margine inferioară între imagini */
+        }
+
+        .small-img-col {
+            margin-right: 20px; /* Adaugă o margine dreaptă între coloanele de imagini mici */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" width="175px"></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Acasa</a></li>
+                        <li><a href="products.html">Produse</a></li>
+                        <li><a href="about.html">Despre</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="account.html">Cont</a></li>
+                    </ul>
+                </nav>
+                <a href="cart.html"><img src="images/cart.png" width="33px" height="28px"></a>
+                <a href="admin.html" style="display: inline-block; margin-left: 10px;">
+                    <img src="images/admin.png" width="30px" height="28px">
+                </a>
+            </div>
+        </div>
+        <div class="small-container single-product">
+            <div class="row">
+                <div class="col-2">
+                    <img src="images/am1.jpg" width="100%" id="productImg">                                                    
+                    <div class="small-img-row">
+                        <div class="small-img-col">
+                            <img src="images/am1.jpg" class="small-img" onclick="changeImage(this)">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="images/am1-negru.jpg" class="small-img" onclick="changeImage(this)">
+                        </div>
+                        <div class="small-img-col">
+                            <img src="images/am1-rosu.jpg" class="small-img" onclick="changeImage(this)">
+                        </div>
+                    </div>                                                                   
+                </div>
+                <div class="col-2">
+                    <p>Acasa / Produse</p>
+                    <h1>Scuter Syn Jet 14</h1>
+                    <h4>2695 Euro</h4>
+                    <select id="quantity">
+                        <option>Selecteaza culoare</option>
+                        <option>Maro</option>
+                        <option>Negru</option>
+                        <option>Rosu</option>
+                    </select>
+                    <button id="addToCartBtn" class="btn" onclick="addToCart()">Adauga in cos</button>
+                    <h3>Detalii despre Syn Jet 14</h3>
+                    <p><br>JET 14 50 este un scooter care iese în evidență prin liniile sale sportive și prin agilitatea<br> pe care o dovedește în competiția cu traficul urban. Designul său mai compact decât al <br>altor scutere urbane din categoria sa, cu jante de 14 inchi (ca cele ale maxiscooterelor) <br>este susținut și de o motorizare performantă care îl face ușor de manevrat în oraș, <br>atât cu pasager, cât și singur.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="scris-date-tehnice">
+            <h3>Date tehnice</h3>
+        </div>
+        <div class="date-tehnice">
+            <table>
+                <tr>
+                    <th>Syn Jet 14</th>
+                    <th>50i - E5</th>
+                </tr>
+                <tr>
+                    <td>Motorizare</td>
+                    <td>Monocilindru în 4 timpi 49,5cc</td>
+                </tr>
+                <tr>
+                    <td>Putere</td>
+                    <td>3 PS la 8000 r.p.m.</td>
+                </tr>
+                <tr>
+                    <td>Cuplu</td>
+                    <td>3 NM la 6000 r.p.m.</td>
+                </tr>
+                <tr>
+                    <td>Răcire</td>
+                    <td>Pe aer</td>
+                </tr>
+                <tr>
+                    <td>Capacitate rezervor</td>
+                    <td>7,5 litri</td>
+                </tr>
+                <tr>
+                    <td>Consum de carburant</td>
+                    <td>2,6 l/100</td>
+                </tr>
+                <tr>
+                    <td>Înălțime șa</td>
+                    <td>770 mm</td>
+                </tr>
+                <tr>
+                    <td>Greutate la plin</td>
+                    <td>119 Kg</td>
+                </tr>
+                <tr>
+                    <td>Roată față</td>
+                    <td>Tubeless 100/90-14</td>
+                </tr>
+                <tr>
+                    <td>Roată spate</td>
+                    <td>Tubeless 110/80-14</td>
+                </tr>
+                <tr>
+                    <td>Frână față</td>
+                    <td>Pe disc 260 mm</td>
+                </tr>
+                <tr>
+                    <td>Frână spate</td>
+                    <td>Pe tambur 130 mm</td>
+                </tr>
+                <tr>
+                    <td>Amortizare față</td>
+                    <td>Furcă telescopică</td>
+                </tr>
+                <tr>
+                    <td>Amortizare spate</td>
+                    <td>Monoamortizor reglabil</td>
+                </tr>
+                <tr>
+                    <td>Sistem de frânare</td>
+                    <td>Standard</td>
+                </tr>
+                <tr>
+                    <td>Dimensiuni (Lxlxh) (mm)</td>
+                    <td>1990x730x1115</td>
+                </tr>
+                <tr>
+                    <td>Ampatament (mm)</td>
+                    <td>1350</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function changeImage(image) {
+            const productImg = document.getElementById('productImg');
+            productImg.src = image.src;
+        }
+
+        function addToCart() {
+            const productName = "Scuter Syn Jet 14";
+            const productPrice = 2695;
+            const productImage = document.getElementById('productImg').src;
+            const quantity = document.getElementById("quantity").valueAsNumber || 1;
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Adăugăm produsul în coș (de mai multe ori dacă se specifică o cantitate)
+            for (let i = 0; i < quantity; i++) {
+                cart.push({ name: productName, price: productPrice, image: productImage });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert(`Produsul "${productName}" a fost adăugat în coș.`);
+        }
+    </script>
+
+</body>
+</html>
